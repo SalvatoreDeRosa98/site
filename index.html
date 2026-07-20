@@ -139,6 +139,7 @@
   .foot a:hover{opacity:1;color:#fff}
   .foot .about{font-size:.88rem}
   .copy{text-align:center;font-size:.78rem;opacity:.6;border-top:1px solid rgba(255,255,255,.08);padding-top:20px}
+  .foot svg{max-width:100%;height:auto}
 
   @media(max-width:900px){
     .hero .wrap,.split,.faq-games{grid-template-columns:1fr}
@@ -148,6 +149,10 @@
     .quotes{grid-template-columns:1fr}
     .fan{display:none}
     .nav-cta{margin-left:0}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:560px){
+    .foot{grid-template-columns:1fr}
   }
 </style>
 </head>
