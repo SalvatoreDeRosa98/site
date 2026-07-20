@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IL CARTOMANTE — Proxy MTG di Alta Qualità | Il futuro delle tue carte</title>
+<meta name="description" content="Proxy MTG e carte personalizzate di alta qualità stampate on demand in Italia. Invia la tua lista su WhatsApp e ricevi subito un preventivo.">
+<style>
+  :root{
+    --bg:#12101a;
+    --bg2:#1b1726;
+    --panel:#ffffff;
+    --panel-soft:#f4f2f8;
+    --ink:#1c1826;
+    --ink-soft:#5a5470;
+    --accent:#e8712a;
+    --accent-dark:#c65a1a;
+    --gold:#e6b34c;
+    --violet:#6c4bd8;
+    --radius:14px;
+    font-size:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--panel-soft);color:var(--ink);line-height:1.55}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+
+  /* Announcement */
+  .announce{background:var(--gold);color:#241a05;text-align:center;font-size:.85rem;font-weight:600;padding:8px 16px}
+
+  /* Header */
+  header{background:var(--bg);color:#fff;position:sticky;top:0;z-index:50;border-bottom:2px solid var(--gold)}
+  .nav{display:flex;align-items:center;gap:26px;padding:14px 0;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo .sigil{flex:none}
+  .logo .txt{display:flex;flex-direction:column;line-height:1.1}
+  .logo b{font-size:1.3rem;letter-spacing:.14em;font-family:Georgia,serif;font-weight:400;color:#f0e6d0}
+  .logo b em{font-style:normal;color:var(--gold)}
+  .logo span{font-family:Georgia,serif;font-style:italic;font-size:.68rem;letter-spacing:.04em;color:#bfb6d8}
+  nav.menu{display:flex;gap:20px;flex-wrap:wrap;font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+  nav.menu a{opacity:.85;padding:6px 0;border-bottom:2px solid transparent}
+  nav.menu a:hover{opacity:1;border-color:var(--accent)}
+  .nav-cta{margin-left:auto;display:flex;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-weight:700;border-radius:999px;padding:12px 24px;font-size:.9rem;transition:.15s}
+  .btn-accent{background:var(--accent);color:#fff}
+  .btn-accent:hover{background:var(--accent-dark)}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid #ddd}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .btn-violet{background:var(--violet);color:#fff}
+
+  /* Hero */
+  .hero{background:radial-gradient(ellipse at 70% 10%,#2b2140 0%,var(--bg) 55%);color:#fff;padding:64px 0 72px;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .eyebrow{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(230,179,76,.5);color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;border-radius:999px;margin-bottom:18px}
+  .hero h1{font-family:Georgia,serif;font-size:clamp(2rem,4.5vw,3.1rem);line-height:1.08;text-transform:uppercase;letter-spacing:.01em}
+  .hero h1 .fx{color:var(--accent)}
+  .hero .sub{font-family:Georgia,serif;color:var(--gold);font-size:clamp(1.2rem,2.4vw,1.7rem);margin:10px 0 18px;text-transform:uppercase}
+  .hero p.lead{color:#cfc8e2;max-width:52ch;margin-bottom:22px}
+  .checks{list-style:none;margin-bottom:28px}
+  .checks li{padding:6px 0 6px 30px;position:relative;color:#e8e3f5;font-size:.95rem}
+  .checks li::before{content:"✓";position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;background:rgba(232,113,42,.18);color:var(--accent);font-size:.75rem;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .checks b{color:var(--gold)}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+  /* Card fan */
+  .fan{position:relative;height:380px}
+  .card{position:absolute;width:185px;border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,.55);transition:transform .2s}
+  .card img{width:100%;border-radius:10px;display:block}
+  .card:hover{transform:rotate(0) scale(1.06);z-index:9}
+  .c1{left:4%;top:64px;transform:rotate(-14deg)}
+  .c2{left:29%;top:20px;transform:rotate(-2deg);z-index:3;width:205px}
+  .c3{left:58%;top:68px;transform:rotate(13deg)}
+
+  /* Sections */
+  section{padding:64px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 40px}
+  .sec-head h2{font-family:Georgia,serif;font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:8px}
+  .sec-head .kick{color:var(--accent);font-weight:700}
+  .sec-head p{color:var(--ink-soft)}
+
+  /* Trust */
+  .trust{background:#fff;border-radius:var(--radius);box-shadow:0 8px 30px rgba(28,24,38,.08);display:grid;grid-template-columns:repeat(5,1fr);margin-top:-46px;position:relative;z-index:5}
+  .trust div{padding:26px 18px;text-align:center;border-left:1px solid #eee}
+  .trust div:first-child{border:none}
+  .trust .ic{font-size:1.6rem;margin-bottom:8px}
+  .trust h3{font-size:1rem;margin-bottom:4px}
+  .trust p{font-size:.78rem;color:var(--ink-soft)}
+
+  /* Pricing */
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .tier{background:#fff;border-radius:var(--radius);padding:26px 20px;text-align:center;box-shadow:0 6px 20px rgba(28,24,38,.06);border:2px solid transparent;position:relative}
+  .tier.best{border-color:var(--accent)}
+  .tier .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.08em;padding:4px 12px;border-radius:999px;text-transform:uppercase}
+  .tier .qty{font-weight:700;font-size:1rem}
+  .tier .save{display:inline-block;background:#fdeadd;color:var(--accent-dark);font-size:.7rem;font-weight:700;border-radius:999px;padding:3px 10px;margin:8px 0}
+  .tier .price{font-size:2rem;font-weight:800}
+  .tier .each{font-size:.7rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
+  .pricing-cta{text-align:center;margin-top:30px}
+
+  /* Cardstock */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+  .panel-dark{background:var(--bg2);color:#fff;border-radius:var(--radius);padding:36px}
+  .panel-dark h3{font-family:Georgia,serif;font-size:1.3rem;color:var(--gold);margin-bottom:12px}
+  .panel-dark p{color:#cfc8e2;font-size:.95rem;margin-bottom:12px}
+  .specs{list-style:none;margin-top:14px}
+  .specs li{padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.12);font-size:.9rem;display:flex;justify-content:space-between;gap:16px}
+  .specs li b{color:var(--gold)}
+
+  /* Testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .quote{background:#fff;border-radius:var(--radius);padding:26px;box-shadow:0 6px 20px rgba(28,24,38,.06)}
+  .quote .stars{color:var(--gold);letter-spacing:2px;margin-bottom:10px}
+  .quote p{font-style:italic;font-size:.95rem;margin-bottom:14px}
+  .quote .who{font-weight:700;font-size:.85rem;color:var(--ink-soft)}
+
+  /* FAQ + games */
+  .faq-games{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:start}
+  details{background:#fff;border-radius:10px;margin-bottom:10px;box-shadow:0 4px 14px rgba(28,24,38,.05);overflow:hidden}
+  summary{cursor:pointer;padding:16px 18px;font-weight:600;font-size:.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary::after{content:"+";color:var(--accent);font-size:1.3rem;font-weight:400}
+  details[open] summary::after{content:"–"}
+  details .body{padding:0 18px 16px;color:var(--ink-soft);font-size:.9rem}
+  .games{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .game{background:#fff;border-radius:10px;padding:18px 10px;text-align:center;box-shadow:0 4px 14px rgba(28,24,38,.05);font-size:.8rem;font-weight:600}
+  .game .gi{font-size:1.5rem;margin-bottom:6px}
+  .game.upload{border:2px dashed var(--accent);color:var(--accent);background:#fff8f3}
+
+  /* CTA band */
+  .band{background:linear-gradient(120deg,var(--violet),#3b2a6e);color:#fff;text-align:center;border-radius:var(--radius);padding:44px 24px}
+  .band h2{font-family:Georgia,serif;font-size:1.6rem;margin-bottom:8px}
+  .band p{color:#ded7f5;margin-bottom:22px}
+
+  /* Footer */
+  footer{background:var(--bg);color:#bfb6d8;margin-top:64px;padding:48px 0 24px;border-top:2px solid var(--gold)}
+  .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
+  .foot h4{color:var(--gold);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+  .foot a{display:block;font-size:.88rem;padding:4px 0;opacity:.85}
+  .foot a:hover{opacity:1;color:#fff}
+  .foot .about{font-size:.88rem}
+  .copy{text-align:center;font-size:.78rem;opacity:.6;border-top:1px solid rgba(255,255,255,.08);padding-top:20px}
+
+  @media(max-width:900px){
+    .hero .wrap,.split,.faq-games{grid-template-columns:1fr}
+    .trust{grid-template-columns:repeat(2,1fr)}
+    .trust div{border:none;border-top:1px solid #eee}
+    .tiers{grid-template-columns:repeat(2,1fr)}
+    .quotes{grid-template-columns:1fr}
+    .fan{display:none}
+    .nav-cta{margin-left:0}
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">Spedizione in tutta Italia e in Europa — per un preventivo invia la tua lista su WhatsApp: <a href="https://wa.me/393246304609" style="text-decoration:underline;font-weight:800">324 630 4609</a></div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <svg class="sigil" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 3 L28 17 L17 31 L6 17 Z" fill="none" stroke="#e6b34c" stroke-width="1.6"/><circle cx="17" cy="17" r="4" fill="#e8712a"/></svg>
+      <span class="txt"><b>IL <em>CARTOMANTE</em></b><span>~ Il futuro delle tue carte ~</span></span>
+    </a>
+    <nav class="menu">
+      <a href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Preventivo</a>
+      <a href="#prezzi">Prezzi</a>
+      <a href="#cardstock">Qualità</a>
+      <a href="#recensioni">Recensioni</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">📲 Richiedi un preventivo</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="ordina">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Il miglior proxy maker TCG in Italia · Spediamo ovunque</span>
+      <h1>Proxy MTG di <span class="fx">alta qualità</span> &amp; molto altro!</h1>
+      <div class="sub">Qualsiasi carta, on demand!</div>
+      <p class="lead">Le carte non mentono: proxy MTG di qualità premium e proxy personalizzate per tanti altri giochi, stampate on demand per le tue partite casalinghe e le serate col tuo playgroup. Tu mandi la lista, noi prediciamo il resto.</p>
+      <ul class="checks">
+        <li><b>Stampa nitida e colori brillanti</b>: carte belle da vedere e da giocare.</li>
+        <li>Invia la tua <b>lista di carte su WhatsApp</b> e ricevi subito un preventivo.</li>
+        <li>Pronte in fretta. <b>Consegna in 2-4 giorni in Italia.</b></li>
+      </ul>
+      <div class="hero-cta">
+        <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">📲 Richiedi un preventivo su WhatsApp</a>
+        <a class="btn btn-ghost" href="#cardstock">Scopri come funziona</a>
+      </div>
+    </div>
+    <div class="fan">
+      <div class="card c1"><img src="https://cards.scryfall.io/normal/front/4/6/46ca0b66-a000-4483-b916-f5b89e710244.jpg?1783915591" alt="Sol Ring"></div>
+      <div class="card c2"><img src="https://cards.scryfall.io/normal/front/d/5/d5806e68-1054-458e-866d-1f2470f682b2.jpg?1783916239" alt="The One Ring"></div>
+      <div class="card c3"><img src="https://cards.scryfall.io/normal/front/e/c/ecc1027a-8c07-44a0-bdde-fa2844cff694.jpg?1783906561" alt="Vivi Ornitier"></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="trust">
+    <div><div class="ic">🔍</div><h3>Anteprima sempre</h3><p>Vedi ogni carta prima della stampa: nessuna sorpresa, solo il mazzo che hai chiesto.</p></div>
+    <div><div class="ic">🃏</div><h3>Qualità premium</h3><p>Carte piacevoli al tatto, fatte per essere mescolate e giocate.</p></div>
+    <div><div class="ic"><svg width="30" height="20" viewBox="0 0 30 20" style="border-radius:3px;vertical-align:middle" aria-label="Bandiera italiana"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg></div><h3>Made in Italy</h3><p>Le tue carte sono stampate, impacchettate e spedite dall'Italia con cura.</p></div>
+    <div><div class="ic">🚚</div><h3>Spedizione rapida</h3><p>Ordini stampati in 24/48h e spediti in pochi giorni, non settimane.</p></div>
+    <div><div class="ic">📲</div><h3>Contatto diretto</h3><p>Niente risposte automatiche: ci scrivi su WhatsApp e ti risponde una persona vera.</p></div>
+  </div>
+</div>
+
+<section id="prezzi">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Prezzi</h2>
+      <p class="kick">Più carte ordini, più risparmi.</p>
+      <p>Sconti automatici in base alla quantità.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier"><div class="qty">1 carta</div><div class="save" style="visibility:hidden">–</div><div class="price">1,00 €</div><div class="each">cad.</div></div>
+      <div class="tier"><div class="qty">10+ carte</div><div class="save">Risparmi il 30%</div><div class="price">0,70 €</div><div class="each">cad.</div></div>
+      <div class="tier"><div class="qty">50+ carte</div><div class="save">Risparmi il 50%</div><div class="price">0,50 €</div><div class="each">cad.</div></div>
+      <div class="tier best"><div class="badge">Più conveniente</div><div class="qty">100+ carte</div><div class="save">Risparmi il 60%</div><div class="price">0,40 €</div><div class="each">cad. — 100 carte = 40 €</div></div>
+    </div>
+    <p style="text-align:center;color:var(--ink-soft);font-size:.85rem;margin-top:14px">Prezzi + spese di spedizione, concordate su WhatsApp col preventivo.</p>
+    <div class="pricing-cta"><a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">📲 Richiedi un preventivo su WhatsApp</a></div>
+  </div>
+</section>
+
+<section id="cardstock" style="padding-top:0">
+  <div class="wrap split">
+    <div class="panel-dark">
+      <h3>Qualità che si vede e si sente</h3>
+      <p>Stampiamo ogni carta con cura, su materiali scelti per durare e per rendere bene sul tavolo da gioco.</p>
+      <p>Colori vividi, dettagli nitidi e un feeling naturale al tatto: carte fatte per essere giocate, non solo guardate.</p>
+      <ul class="specs">
+        <li><span>Stampa</span><b>Nitida e brillante</b></li>
+        <li><span>Misure</span><b>Identiche alle carte originali</b></li>
+        <li><span>Al tatto</span><b>Piacevoli e resistenti</b></li>
+        <li><span>Anteprima</span><b>Controlli tutto prima della stampa</b></li>
+      </ul>
+    </div>
+    <div>
+      <div class="sec-head" style="text-align:left;margin:0 0 18px">
+        <h2>Come funziona</h2>
+        <p>Semplicissimo: ci mandi la tua lista di carte su WhatsApp, ti rispondiamo con il preventivo, approvi l'anteprima e ricevi il mazzo a casa.</p>
+      </div>
+      <ul class="checks" style="--c:#333">
+        <li style="color:var(--ink)">Invii la lista su WhatsApp e ricevi il preventivo</li>
+        <li style="color:var(--ink)">Approvi l'anteprima di ogni carta prima della stampa</li>
+        <li style="color:var(--ink)">Ricevi tutto a casa in 2-4 giorni</li>
+      </ul>
+      <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">📲 Scrivici su WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="recensioni" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Cosa dicono i giocatori</h2>
+      <p>Recensioni verificate dai nostri clienti.</p>
+    </div>
+    <div class="quotes">
+      <div class="quote"><div class="stars">★★★★★</div><p>"La miglior qualità proxy che abbia mai ordinato. I colori risaltano, il cartoncino è fantastico e la spedizione è sempre rapida!"</p><div class="who">Tiziano R.</div></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>"La qualità di stampa è incredibile. Le carte si mescolano esattamente come le originali. Il mio punto di riferimento per ogni mazzo che costruisco."</p><div class="who">Alessio R.</div></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>"Ho ordinato un mazzo Commander completo: pronto in un giorno e arrivato in tre. Staff gentilissimo e sempre disponibile."</p><div class="who">Martina G.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap faq-games">
+    <div>
+      <div class="sec-head" style="text-align:left;margin-bottom:18px"><h2>Domande frequenti</h2></div>
+      <details open><summary>Perché scegliere Il Cartomante per le tue proxy?</summary><div class="body">Stampa nitida e curata, anteprima di ogni carta prima della produzione e una persona vera che ti segue su WhatsApp dal preventivo alla consegna.</div></details>
+      <details><summary>Come richiedo un preventivo?</summary><div class="body">Semplice: scrivici su WhatsApp al 324 630 4609 con la tua lista di carte (es. "4 Sol Ring, 1 The One Ring"). Ti rispondiamo con prezzo e tempi di consegna.</div></details>
+      <details><summary>Cosa sono le proxy MTG?</summary><div class="body">Sono riproduzioni di carte usate per testare mazzi o giocare partite casalinghe senza acquistare le carte originali, spesso molto costose.</div></details>
+      <details><summary>Le proxy sono legali?</summary><div class="body">Le proxy sono pensate per uso personale e partite casalinghe. Non sono legali nei tornei sanzionati e non vanno vendute come carte originali.</div></details>
+      <details><summary>Quanto tempo ci vuole per ricevere l'ordine?</summary><div class="body">La maggior parte degli ordini è stampata entro 24/48 ore e consegnata in 2-4 giorni lavorativi in Italia.</div></details>
+      <details><summary>Posso caricare grafiche personalizzate?</summary><div class="body">Sì! Puoi caricare le tue immagini e creare carte completamente personalizzate: alterazioni artistiche, token custom, regali per il tuo playgroup.</div></details>
+    </div>
+    <div>
+      <div class="sec-head" style="text-align:left;margin-bottom:18px">
+        <h2>Carte personalizzate</h2>
+        <p>Non solo proxy: creiamo carte uniche con le tue grafiche.</p>
+      </div>
+      <div class="games">
+        <div class="game"><div class="gi">🎨</div>Le tue grafiche</div>
+        <div class="game"><div class="gi">🪙</div>Token custom</div>
+        <div class="game"><div class="gi">🖼️</div>Alterazioni artistiche</div>
+        <div class="game"><div class="gi">🎁</div>Regali per il playgroup</div>
+        <div class="game"><div class="gi">🃏</div>Carte su misura</div>
+        <div class="game upload"><div class="gi">⬆️</div>Invia la tua idea</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <h2><svg width="22" height="22" viewBox="0 0 34 34" style="vertical-align:-3px;margin-right:6px" aria-hidden="true"><path d="M17 3 L28 17 L17 31 L6 17 Z" fill="none" stroke="#e6b34c" stroke-width="2"/><circle cx="17" cy="17" r="4" fill="#e6b34c"/></svg>Il futuro delle tue carte inizia qui</h2>
+      <p>Mandaci la tua lista su WhatsApp: il preventivo è gratuito e senza impegno.</p>
+      <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">📲 Richiedi un preventivo su WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="about">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:12px">
+          <svg width="220" height="16" viewBox="0 0 220 16" aria-hidden="true"><line x1="0" y1="8" x2="92" y2="8" stroke="#e6b34c" stroke-width="1"/><path d="M110 1 L117 8 L110 15 L103 8 Z" fill="none" stroke="#e6b34c" stroke-width="1.3"/><circle cx="110" cy="8" r="2" fill="#e8712a"/><line x1="128" y1="8" x2="220" y2="8" stroke="#e6b34c" stroke-width="1"/></svg>
+          <b style="font-family:Georgia,serif;font-weight:400;font-size:1.15rem;letter-spacing:.14em;color:#f0e6d0">IL <span style="color:var(--gold)">CARTOMANTE</span></b>
+          <span style="font-family:Georgia,serif;font-style:italic;font-size:.72rem;color:#bfb6d8">~ Il futuro delle tue carte ~</span>
+        </div>
+        <p>Proxy MTG premium e stampa di carte personalizzate — create da giocatori, per giocatori che ci tengono.</p>
+      </div>
+      <div>
+        <h4>Link rapidi</h4>
+        <a href="#ordina">Proxy MTG</a>
+        <a href="#recensioni">Recensioni</a>
+        <a href="#prezzi">Prezzi</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Come ordinare</h4>
+        <a href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Richiedi un preventivo</a>
+        <a href="#cardstock">Come funziona</a>
+        <a href="#prezzi">Listino prezzi</a>
+      </div>
+      <div>
+        <h4>Assistenza</h4>
+        <a href="https://wa.me/393246304609">WhatsApp: 324 630 4609</a>
+        <a href="#faq">Domande frequenti</a>
+        <a href="#">Termini e condizioni</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 Il Cartomante — Tutti i diritti riservati. Le proxy sono destinate esclusivamente all'uso personale.</div>
+  </div>
+</footer>
+
+</body>
+</html>
