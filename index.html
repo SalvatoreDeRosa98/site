@@ -223,6 +223,16 @@
     .btn:hover::after{animation:none}
   }
 
+  /* sample offer */
+  .sample{display:grid;gap:28px;padding-block:44px;border-block:1px solid var(--line)}
+  .sample-badge{display:inline-flex;gap:10px;align-items:baseline;font-family:var(--display);font-size:1.6rem;font-weight:500}
+  .sample-badge small{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .sample ol{list-style:none;counter-reset:x;display:grid;gap:14px}
+  .sample li{counter-increment:x;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;color:var(--ink-2)}
+  .sample li::before{content:counter(x);width:30px;height:30px;border:1px solid var(--line-strong,var(--accent));
+    border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:13px;color:var(--accent)}
+  .sample li b{color:var(--ink);font-weight:600}
+
   /* desktop */
   @media (min-width:760px){
     :root{--gutter:32px}
@@ -236,6 +246,7 @@
     .split{grid-template-columns:1fr 1fr;gap:72px;align-items:start}
     .quotes{grid-template-columns:repeat(3,1fr);gap:32px}
     .decks-grid{grid-template-columns:repeat(3,1fr);gap:40px}
+    .sample{grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding-block:64px}
     .deck{width:100%}
     .options{grid-template-columns:repeat(4,1fr)}
     .options div:nth-child(even){padding-left:0;border-left:0}
@@ -305,7 +316,7 @@
       </ul>
       <div class="cta-row">
         <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Richiedi un preventivo</a>
-        <a class="btn btn-line" href="#come">Come funziona</a>
+        <a class="btn btn-line" href="#sample">Richiedi un sample</a>
       </div>
     </div>
     <div class="spread" role="img" aria-label="Esempi di carte stampate: Sol Ring, The One Ring, Vivi Ornitier">
@@ -366,6 +377,24 @@
     </div>
   </div>
 </section>
+
+<div class="wrap">
+  <div class="sample" id="sample">
+    <div>
+      <div class="sample-badge">Sample <small>Solo spedizione</small></div>
+      <h2 class="display" style="margin:12px 0 14px">Prova prima di <em>ordinare</em></h2>
+      <p class="lede">Richiedi un sample di 10 carte scelte a caso dal nostro catalogo. Non paghi le carte: ti chiediamo solo il costo della spedizione.</p>
+    </div>
+    <div style="display:grid;gap:24px">
+      <ol>
+        <li><span><b>Scrivici su WhatsApp</b> e dicci che vuoi il sample.</span></li>
+        <li><span><b>Ti mandiamo il costo</b> della spedizione, da pagare prima dell'invio.</span></li>
+        <li><span><b>Ricevi 10 carte</b> a caso, stampate come quelle degli ordini.</span></li>
+      </ol>
+      <a class="btn btn-accent" style="justify-self:start" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20richiedere%20il%20sample%20di%2010%20carte%20a%20caso%2C%20pago%20solo%20la%20spedizione.">Richiedi il sample</a>
+    </div>
+  </div>
+</div>
 
 <section class="block" id="prezzi">
   <div class="wrap">
