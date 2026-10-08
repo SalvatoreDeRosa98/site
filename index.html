@@ -5,406 +5,416 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Il Cartomante — Proxy MTG di alta qualità</title>
 <meta name="description" content="Proxy MTG premium e carte personalizzate, stampate on demand. Manda la tua lista su WhatsApp e ricevi subito un preventivo.">
+<meta name="theme-color" content="#eeeee8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1013" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  /* Layout: one column that widens into a split hero and a two-column spec/steps band.
+     Palette: card stock and printer's ink, with a single oxblood accent. */
   :root{
-    --bg:#0e0c15; --bg2:#14111e; --panel:#181524;
-    --ink:#e9e3f2; --muted:#b9b1cf; --dim:#9089a6;
-    --gold:#e6b34c; --gold-soft:#f0e6d0; --cream:#f6efdd;
-    --accent:#e8712a; --accent-hi:#f0813a;
-    --line:rgba(230,179,76,.18); --line-strong:rgba(230,179,76,.4);
-    --serif:'Cormorant Garamond',Georgia,serif;
-    --sans:'Jost',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    --wrap:1160px;
+    --paper:#eeeee8; --paper-2:#e3e3dc; --ink:#15171a; --ink-2:#3b4046; --mute:#666b72;
+    --line:#c8c9bf; --accent:#7b1e2e; --accent-ink:#fbf8f3; --brass:#7d6226;
+    --display:'Bodoni Moda','Didot','Bodoni 72',Georgia,serif;
+    --text:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+    --wrap:1120px; --gutter:20px;
+    color-scheme:light;
   }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#0f1013; --paper-2:#17181c; --ink:#ecebe6; --ink-2:#c3c3bb; --mute:#8d9097;
+      --line:#2c2e34; --accent:#d2566a; --accent-ink:#0f1013; --brass:#d3ad5c;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0f1013; --paper-2:#17181c; --ink:#ecebe6; --ink-2:#c3c3bb; --mute:#8d9097;
+    --line:#2c2e34; --accent:#d2566a; --accent-ink:#0f1013; --brass:#d3ad5c;
+    color-scheme:dark;
+  }
+
   *{margin:0;padding:0;box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    font-family:var(--sans); background:var(--bg); color:var(--ink);
-    line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased;
-  }
-  img{max-width:100%;display:block}
-  a{color:var(--gold);text-decoration:none}
-  .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 20px}
-  .serif{font-family:var(--serif)}
-  .accent{color:var(--accent)}
-  .gold{color:var(--gold)}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:16px;
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%;height:auto}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
-  /* ---------- buttons ---------- */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
-    font-weight:600;border-radius:999px;padding:15px 26px;font-size:15px;
-    line-height:1;transition:.18s;cursor:pointer;text-align:center}
+  .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter)}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+  .display{font-family:var(--display);font-weight:500;line-height:1.02;text-wrap:balance;letter-spacing:-.005em}
+  .display em{font-style:italic;color:var(--accent)}
+  h2.display{font-size:clamp(2rem,6vw,3.1rem)}
+  .lede{color:var(--ink-2);font-size:1.05rem;max-width:52ch}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;
+    padding:12px 22px;border-radius:4px;font:600 15px/1 var(--text);text-decoration:none;
+    border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;
+    transition:background .15s,color .15s,border-color .15s}
+  .btn:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .btn-line{background:transparent;color:var(--ink)}
+  .btn-line:hover{background:transparent;color:var(--accent);border-color:var(--accent)}
+  .btn-accent{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .btn-accent:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
   .btn svg{flex:none}
-  .btn-accent{background:var(--accent);color:#fff}
-  .btn-accent:active,.btn-accent:hover{background:var(--accent-hi);color:#fff}
-  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-strong)}
-  .btn-ghost:active,.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
-  .btn-block{width:100%}
 
-  /* ---------- top announcement ---------- */
-  .topbar{background:#0a0812;border-bottom:1px solid var(--line);
-    font-size:12.5px;color:var(--dim);text-align:center;padding:9px 16px}
-  .topbar b{color:var(--gold)}
-  .topbar a{color:var(--gold-soft);font-weight:600}
+  /* top strip */
+  .strip{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;
+    letter-spacing:.04em;text-align:center;padding:9px var(--gutter)}
+  .strip a{color:var(--paper);font-weight:500}
 
-  /* ---------- header ---------- */
-  header{position:sticky;top:0;z-index:50;background:rgba(14,12,21,.9);
-    backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  .hd{display:flex;align-items:center;gap:14px;padding:12px 20px;max-width:var(--wrap);margin:0 auto}
-  .brand{display:flex;align-items:center;gap:11px}
-  .brand b{font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:.14em;color:var(--gold-soft);line-height:1}
-  .brand small{font-family:var(--serif);font-style:italic;font-size:11px;color:var(--dim);letter-spacing:.02em}
-  .brand .col{display:flex;flex-direction:column;gap:3px}
-  nav.main{display:none;gap:24px;margin-left:12px;font-size:12px;font-weight:500;
-    letter-spacing:.14em;text-transform:uppercase}
-  nav.main a{color:var(--muted);padding-bottom:3px;border-bottom:1px solid transparent}
-  nav.main a:hover{color:var(--gold);border-color:var(--accent)}
-  .hd .cta{margin-left:auto;padding:11px 18px;font-size:13px}
-  .hd .cta .lbl{display:none}
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .hd{display:flex;align-items:center;gap:16px;min-height:64px}
+  .brand{display:flex;flex-direction:column;text-decoration:none;line-height:1.1;min-width:0}
+  .brand b{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.06em;white-space:nowrap}
+  .brand small{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-top:3px;white-space:nowrap}
+  .hd nav{display:none;margin-left:auto;gap:26px;font-size:14px;font-weight:500}
+  .hd nav a{text-decoration:none;color:var(--ink-2);padding-block:4px;border-bottom:1px solid transparent}
+  .hd nav a:hover{color:var(--accent);border-color:var(--accent)}
+  .hd .btn{margin-left:auto;min-height:40px;padding:10px 16px;font-size:14px;white-space:nowrap}
+  .hd .lbl-s{display:none}
 
-  /* ---------- section base ---------- */
-  section{padding:56px 0;position:relative}
-  .eyebrow{font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
-    color:var(--gold);display:inline-flex;align-items:center;gap:9px;
-    border:1px solid var(--line-strong);background:rgba(230,179,76,.07);
-    padding:7px 15px;border-radius:999px}
-  h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.3rem,9vw,4rem);
-    line-height:1.02;text-transform:uppercase;letter-spacing:.02em;color:var(--cream)}
-  h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,6.5vw,2.8rem);
-    line-height:1.05;color:var(--cream)}
-  .lead-it{font-family:var(--serif);font-style:italic;color:var(--gold);
-    font-size:clamp(1.3rem,4.5vw,1.8rem)}
-  .muted{color:var(--muted)}
-  .center{text-align:center}
-  .maxc{max-width:56ch;margin-left:auto;margin-right:auto}
+  /* hero */
+  .hero{padding-block:44px 64px}
+  .hero-grid{display:grid;gap:44px;align-items:center}
+  .hero h1{font-size:clamp(2.7rem,11vw,5.4rem);margin:18px 0 18px}
+  .hero .lede{margin-bottom:28px}
+  .points{list-style:none;display:grid;gap:12px;margin-bottom:32px;font-size:15px;color:var(--ink-2)}
+  .points li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+  .points li::before{content:"";width:8px;height:8px;margin-top:8px;background:var(--accent);transform:rotate(45deg)}
+  .points b{color:var(--ink);font-weight:600}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+  .spread{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:center}
+  .spread figure{aspect-ratio:63/88;border-radius:14px;overflow:hidden;background:var(--paper-2);
+    box-shadow:0 1px 0 var(--line),0 22px 40px -22px rgba(0,0,0,.45);min-width:0}
+  .spread figure:nth-child(2){transform:translateY(-22px) scale(1.04)}
+  .spread img{width:100%;height:100%;object-fit:cover}
+  .spread figcaption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-  /* ---------- hero ---------- */
-  #top{padding-top:40px}
-  .hero-badge{margin-bottom:20px}
-  .hero h1{margin:2px 0 10px}
-  .hero .lead-it{margin-bottom:16px}
-  .hero p.desc{color:var(--muted);font-size:1.02rem;margin-bottom:22px}
-  .checks{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
-  .checks li{display:flex;gap:12px;color:#ddd6ee;font-size:.98rem}
-  .checks .dot{flex:none;margin-top:7px;width:9px;height:9px;transform:rotate(45deg);
-    background:var(--accent);border:1px solid var(--gold)}
-  .checks b{color:var(--gold-soft);font-weight:600}
-  .hero-cta{display:flex;flex-direction:column;gap:12px}
+  /* numbers band */
+  .facts{border-block:1px solid var(--line)}
+  .facts-in{display:grid;grid-template-columns:1fr 1fr;}
+  .fact{padding:22px 0;display:grid;gap:4px}
+  .fact+.fact{border-left:1px solid var(--line);padding-left:18px}
+  .fact .v{font-family:var(--display);font-size:1.35rem;font-weight:500}
+  .fact .k{font-size:13px;color:var(--mute)}
 
-  /* hero card fan */
-  .fan{margin:38px auto 0;position:relative;width:min(340px,86vw);height:0;
-    padding-bottom:66%}
-  .fan .card{position:absolute;top:50%;width:40%;aspect-ratio:63/88;
-    border-radius:10px;overflow:hidden;border:1px solid var(--line-strong);
-    box-shadow:0 18px 40px rgba(0,0,0,.6);background:var(--bg2)}
-  .fan .card img{width:100%;height:100%;object-fit:cover}
-  .fan .c1{left:2%;transform:translateY(-46%) rotate(-14deg)}
-  .fan .c2{left:30%;width:44%;z-index:3;transform:translateY(-54%) rotate(-1deg);
-    box-shadow:0 24px 50px rgba(0,0,0,.7)}
-  .fan .c3{right:2%;transform:translateY(-46%) rotate(14deg)}
+  section.block{padding-block:72px}
+  .head{display:grid;gap:14px;margin-bottom:36px}
 
-  /* ---------- feature strip ---------- */
-  .feat{display:grid;grid-template-columns:1fr 1fr;gap:1px;
-    background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  .feat .cell{background:var(--bg);padding:22px 16px;text-align:center}
-  .feat .ic{width:26px;height:26px;margin:0 auto 10px;color:var(--gold)}
-  .feat h3{font-family:var(--serif);font-size:1.1rem;color:var(--gold-soft);
-    font-weight:600;margin-bottom:4px}
-  .feat p{font-size:.8rem;color:var(--dim)}
+  /* pricing: a rate card, not boxes */
+  .rates{border-top:1px solid var(--ink)}
+  .rate{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:baseline;
+    padding:18px 0;border-bottom:1px solid var(--line)}
+  .rate .q{font-weight:600}
+  .rate .s{grid-column:1;font-size:14px;color:var(--mute)}
+  .rate .p{grid-column:2;grid-row:1 / span 2;font-family:var(--mono);font-size:1.5rem;font-weight:500;text-align:right;white-space:nowrap}
+  .rate .p small{font-size:.6em;color:var(--mute);margin-left:2px}
+  .rate.best{background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 9%,transparent));padding-inline:12px;margin-inline:-12px}
+  .rate.best .p{color:var(--accent)}
+  .rate .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent);border:1px solid currentColor;border-radius:3px;padding:1px 6px;margin-left:8px;vertical-align:2px}
+  .note{font-size:14px;color:var(--mute);margin-top:16px;max-width:60ch}
 
-  /* ---------- pricing ---------- */
-  .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
-  .tier{background:var(--panel);border:1px solid var(--line);border-radius:14px;
-    padding:20px 16px;text-align:center;position:relative}
-  .tier .q{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .tier .p{font-family:var(--serif);font-size:2.2rem;color:var(--cream);line-height:1.15;margin:6px 0}
-  .tier .save{display:inline-block;font-size:.72rem;font-weight:600;color:var(--gold);
-    background:rgba(230,179,76,.1);border:1px solid var(--line-strong);
-    padding:3px 9px;border-radius:999px}
-  .tier.best{border-color:var(--accent);background:linear-gradient(160deg,#241d36,var(--bg2))}
-  .tier .flag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);
-    background:var(--accent);color:#fff;font-size:.62rem;font-weight:700;
-    letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;white-space:nowrap}
-  .note{color:var(--dim);font-size:.86rem;margin:18px auto 20px;text-align:center;max-width:46ch}
+  /* quality + steps */
+  .split{display:grid;gap:56px}
+  .spec{margin-top:28px;border-top:1px solid var(--line)}
+  .spec div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .spec dt{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding-top:3px}
+  .spec dd{font-family:var(--display);font-size:1.2rem;font-weight:500}
+  .steps{list-style:none;counter-reset:s;display:grid;gap:0;border-top:1px solid var(--ink)}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:56px 1fr;gap:6px 12px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:14px;color:var(--accent);padding-top:4px}
+  .steps .t{font-weight:600;font-size:1.02rem}
+  .steps .d{grid-column:2;font-size:15px;color:var(--ink-2)}
 
-  /* ---------- quality ---------- */
-  .panel{background:linear-gradient(160deg,#211a30,var(--bg2));
-    border:1px solid var(--line);border-radius:16px;padding:26px 20px}
-  .qgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-  .qbox{background:rgba(255,255,255,.03);border:1px solid var(--line);
-    border-radius:12px;padding:16px}
-  .qbox .k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
-  .qbox .v{font-family:var(--serif);font-size:1.15rem;color:var(--gold-soft);margin-top:4px}
+  /* reviews */
+  .quotes{display:grid;gap:36px}
+  blockquote{position:relative;padding-top:6px}
+  blockquote p{font-family:var(--display);font-style:italic;font-size:1.3rem;line-height:1.35;text-wrap:pretty}
+  blockquote footer{margin-top:14px;font-size:14px;color:var(--mute);display:flex;gap:10px;align-items:center}
+  blockquote footer::before{content:"";width:22px;height:1px;background:var(--accent)}
+  .stars{font-family:var(--mono);letter-spacing:.2em;color:var(--brass);font-size:13px}
 
-  /* steps */
-  .steps{display:flex;flex-direction:column;gap:14px;margin-top:22px}
-  .step{display:flex;gap:16px;align-items:flex-start;background:var(--panel);
-    border:1px solid var(--line);border-radius:14px;padding:18px}
-  .step .n{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line-strong);
-    display:flex;align-items:center;justify-content:center;font-family:var(--serif);
-    font-size:1.2rem;color:var(--gold)}
-  .step .t{font-weight:600;color:var(--gold-soft);margin-bottom:2px}
-  .step .d{font-size:.9rem;color:var(--dim)}
-
-  /* ---------- reviews ---------- */
-  .reviews{display:flex;flex-direction:column;gap:14px;margin-top:22px}
-  .review{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
-  .stars{color:var(--gold);letter-spacing:2px;font-size:.95rem;margin-bottom:8px}
-  .review p{color:#ddd6ee;font-size:.96rem;margin-bottom:12px}
-  .review .by{font-size:.82rem;color:var(--dim);font-style:italic;font-family:var(--serif)}
-
-  /* ---------- faq ---------- */
-  .faq{margin-top:22px;border-top:1px solid var(--line)}
+  /* faq */
+  .faq{border-top:1px solid var(--ink)}
   details{border-bottom:1px solid var(--line)}
-  details summary{list-style:none;cursor:pointer;padding:16px 34px 16px 2px;position:relative;
-    font-weight:500;color:var(--gold-soft);font-size:1rem}
-  details summary::-webkit-details-marker{display:none}
-  details summary::after{content:"+";position:absolute;right:6px;top:14px;
-    font-size:1.4rem;color:var(--gold);transition:.2s}
+  summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;
+    padding:18px 0;font-weight:600;font-size:1.02rem}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";flex:none;width:12px;height:12px;background:
+    linear-gradient(var(--accent),var(--accent)) center/12px 1.5px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) center/1.5px 12px no-repeat;transition:transform .2s}
   details[open] summary::after{transform:rotate(45deg)}
-  details .a{padding:0 2px 18px;color:var(--dim);font-size:.92rem}
+  details p{padding:0 0 20px;color:var(--ink-2);max-width:66ch}
 
   /* custom cards */
-  .custom{margin-top:44px}
-  .cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-  .cc{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:14px}
-  .cc .k{font-weight:600;color:var(--gold-soft);font-size:.92rem}
-  .cc .d{font-size:.8rem;color:var(--dim);margin-top:3px}
+  .custom{display:grid;gap:28px;padding-block:56px;border-block:1px solid var(--line)}
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .options div{padding:18px 0;border-top:1px solid var(--line)}
+  .options div:nth-child(even){padding-left:16px;border-left:1px solid var(--line)}
+  .options b{display:block;font-weight:600}
+  .options span{font-size:14px;color:var(--mute)}
 
-  /* final cta band */
-  .band{margin-top:44px;text-align:center;background:linear-gradient(160deg,#241d36,var(--bg2));
-    border:1px solid var(--line-strong);border-radius:18px;padding:34px 22px}
-  .band h2{margin-bottom:10px}
-  .band p{color:var(--muted);margin-bottom:20px}
+  /* closing band */
+  .closing{background:var(--accent);color:var(--accent-ink);border-radius:18px;padding:44px 24px;
+    display:grid;gap:22px;text-align:left}
+  .closing .display{font-size:clamp(2rem,6vw,3.2rem)}
+  .closing p{max-width:50ch;opacity:.92}
+  .closing .btn{background:var(--accent-ink);border-color:var(--accent-ink);color:var(--accent);align-self:start}
+  .closing .btn:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 
-  /* ---------- footer ---------- */
-  footer{border-top:1px solid var(--line);padding:44px 0 30px}
-  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-  .fbrand{grid-column:1 / -1}
-  .fbrand p{color:var(--dim);font-size:.86rem;margin-top:12px;max-width:38ch}
-  .fcol h4{color:var(--gold);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
-  .fcol a,.fcol span{display:block;color:var(--muted);font-size:.9rem;margin-bottom:8px}
-  .fcol a:hover{color:#fff}
-  .copy{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);
-    color:var(--dim);font-size:.78rem;text-align:center;line-height:1.7}
+  /* footer */
+  footer{padding-block:56px 36px;margin-top:72px;border-top:1px solid var(--line);font-size:14px;color:var(--mute)}
+  .fgrid{display:grid;gap:32px}
+  .fgrid h4{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);font-weight:500;margin-bottom:12px}
+  .fgrid a,.fgrid span{display:block;color:var(--ink-2);text-decoration:none;margin-bottom:8px}
+  .fgrid a:hover{color:var(--accent)}
+  .fgrid p{max-width:36ch;margin-top:12px}
+  .legal{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13px}
 
-  /* ---------- desktop enhancements ---------- */
-  @media (min-width:720px){
-    .wrap{padding:0 32px}
-    .hd{padding:14px 32px}
-    nav.main{display:flex}
-    .hd .cta .lbl{display:inline}
-    section{padding:76px 0}
-    .hero-cta{flex-direction:row}
-    .feat{grid-template-columns:repeat(5,1fr)}
-    .price-grid{grid-template-columns:repeat(4,1fr)}
-    .qgrid{grid-template-columns:repeat(4,1fr)}
-    .cc-grid{grid-template-columns:repeat(4,1fr)}
-    .reviews{flex-direction:row}
-    .reviews .review{flex:1}
+  /* desktop */
+  @media (min-width:760px){
+    :root{--gutter:32px}
+    .hd nav{display:flex}
+    .hd .lbl-s{display:inline}
+    .brand b{font-size:20px}
+    .brand small{font-size:10.5px;letter-spacing:.1em}
+    .hero-grid{grid-template-columns:1.05fr .95fr;gap:64px}
+    .facts-in{grid-template-columns:repeat(4,1fr)}
+    .fact+.fact{padding-left:24px}
+    .split{grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+    .quotes{grid-template-columns:repeat(3,1fr);gap:32px}
+    .options{grid-template-columns:repeat(4,1fr)}
+    .options div:nth-child(even){padding-left:0;border-left:0}
+    .options div+div{padding-left:16px;border-left:1px solid var(--line)}
+    .custom{grid-template-columns:1fr 1.4fr;align-items:end}
+    .closing{grid-template-columns:1fr auto;align-items:end;padding:56px 48px}
     .fgrid{grid-template-columns:1.6fr 1fr 1fr 1fr}
-    .fbrand{grid-column:auto}
+    .head{grid-template-columns:1fr 1fr;align-items:end}
+    .head .lede{justify-self:end}
+    .rate{grid-template-columns:1.2fr 1fr auto;gap:0 24px}
+    .rate .s{grid-column:2;grid-row:1}
+    .rate .p{grid-column:3;grid-row:1}
+    .rate .q{grid-column:1;grid-row:1}
+    .rate .s{font-size:14px}
+    .rate .p{font-size:1.6rem}
+    .rate.best{padding-inline:16px;margin-inline:-16px}
   }
-  @media (min-width:960px){
-    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center}
-    .fan{margin:0;width:100%;padding-bottom:78%}
-    .qsplit{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+  @media (min-width:1000px){
+    section.block{padding-block:96px}
+    .hero{padding-block:72px 96px}
+  }
+  @media (max-width:380px){
+    .spread{gap:8px}
+    .spread figure:nth-child(2){transform:translateY(-14px) scale(1.03)}
+    .spec div{grid-template-columns:1fr;gap:4px}
+  }
+  @media (prefers-color-scheme:dark){
+    .strip{background:var(--paper-2);color:var(--ink);border-bottom:1px solid var(--line)}
+    .strip a{color:var(--accent)}
   }
 </style>
 </head>
 <body>
 
-<div class="topbar">Spedizione in tutta Italia e in Europa · preventivo su WhatsApp: <a href="https://wa.me/393246304609">324 630 4609</a></div>
+<div class="strip">Spedizione in tutta Italia e in Europa · Preventivo su WhatsApp: <a href="https://wa.me/393246304609">324 630 4609</a></div>
 
 <header>
-  <div class="hd">
-    <a class="brand" href="#top">
-      <svg width="30" height="30" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 2 L30 17 L17 32 L4 17 Z" fill="none" stroke="#e6b34c" stroke-width="1.3"/><circle cx="17" cy="17" r="4" fill="#e8712a"/></svg>
-      <span class="col"><b>IL <span class="gold">CARTOMANTE</span></b><small>Il futuro delle tue carte</small></span>
+  <div class="wrap hd">
+    <a class="brand" href="#top" aria-label="Il Cartomante, home">
+      <b>IL CARTOMANTE</b>
+      <small>Il futuro delle tue carte</small>
     </a>
-    <nav class="main">
+    <nav aria-label="Principale">
       <a href="#prezzi">Prezzi</a>
-      <a href="#qualita">Qualità</a>
+      <a href="#come">Come funziona</a>
       <a href="#recensioni">Recensioni</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-accent cta" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.5-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8.9-.3.2-.5 0a6.5 6.5 0 0 1-1.9-1.2 7.3 7.3 0 0 1-1.3-1.7c-.2-.2 0-.4.1-.5l.4-.5.3-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c.6.3 1.1.4 1.5.5a3.5 3.5 0 0 0 1.6.1 2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3Z"/></svg>
-      <span class="lbl">Richiedi preventivo</span>
+    <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">
+      <span class="lbl-s">Preventivo</span><span>WhatsApp</span>
     </a>
   </div>
 </header>
 
-<section id="top" class="hero">
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="label">Proxy MTG · Carte personalizzate</span>
+      <h1 class="display">Proxy MTG di <em>alta qualità</em></h1>
+      <p class="lede">Stampate on demand per le tue partite casalinghe e le serate con il playgroup. Mandaci la lista, ti rispondiamo con il prezzo.</p>
+      <ul class="points">
+        <li><span><b>Stampa nitida, colori pieni.</b> Carte belle da vedere e fatte per essere mescolate.</span></li>
+        <li><span>Invia la tua <b>lista su WhatsApp</b> e ricevi subito il preventivo.</span></li>
+        <li><span><b>Consegna in 2-4 giorni</b> in Italia, stampa in 24/48 ore.</span></li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Richiedi un preventivo</a>
+        <a class="btn btn-line" href="#come">Come funziona</a>
+      </div>
+    </div>
+    <div class="spread" role="img" aria-label="Esempi di carte stampate: Sol Ring, The One Ring, Vivi Ornitier">
+      <figure><img src="https://cards.scryfall.io/normal/front/4/6/46ca0b66-a000-4483-b916-f5b89e710244.jpg?1783915591" alt="" loading="lazy"></figure>
+      <figure><img src="https://cards.scryfall.io/normal/front/d/5/d5806e68-1054-458e-866d-1f2470f682b2.jpg?1783916239" alt="" loading="lazy"></figure>
+      <figure><img src="https://cards.scryfall.io/normal/front/e/c/ecc1027a-8c07-44a0-bdde-fa2844cff694.jpg?1783906561" alt="" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<div class="facts">
+  <div class="wrap facts-in">
+    <div class="fact"><span class="v">24/48 h</span><span class="k">Tempo di stampa</span></div>
+    <div class="fact"><span class="v">2-4 gg</span><span class="k">Consegna in Italia</span></div>
+    <div class="fact"><span class="v">0 €</span><span class="k">Preventivo, senza impegno</span></div>
+    <div class="fact"><span class="v">1 persona</span><span class="k">Ti risponde su WhatsApp</span></div>
+  </div>
+</div>
+
+<section class="block" id="prezzi">
   <div class="wrap">
-    <div class="hero-inner">
+    <div class="head">
       <div>
-        <span class="eyebrow hero-badge">
-          <svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0 L10 5 L5 10 L0 5 Z" fill="#e8712a"/></svg>
-          Il miglior proxy maker in Italia
-        </span>
-        <h1>Proxy MTG di <span class="accent">alta qualità</span></h1>
-        <div class="lead-it">Qualsiasi carta, on demand.</div>
-        <p class="desc">Le carte non mentono: proxy MTG premium e carte personalizzate, stampate on demand per le tue partite casalinghe e le serate col tuo playgroup. Tu mandi la lista, noi prediciamo il resto.</p>
-        <ul class="checks">
-          <li><span class="dot"></span><span><b>Stampa nitida e colori brillanti</b> — carte belle da vedere e da giocare.</span></li>
-          <li><span class="dot"></span><span>Invia la tua <b>lista su WhatsApp</b> e ricevi subito un preventivo.</span></li>
-          <li><span class="dot"></span><span>Pronte in fretta. <b>Consegna in 2-4 giorni in Italia.</b></span></li>
-        </ul>
-        <div class="hero-cta">
-          <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Richiedi un preventivo</a>
-          <a class="btn btn-ghost" href="#qualita">Scopri come funziona</a>
-        </div>
+        <span class="label">Listino</span>
+        <h2 class="display" style="margin-top:12px">Più carte, <em>meno</em> a carta</h2>
       </div>
-      <div class="fan">
-        <div class="card c1"><img src="https://cards.scryfall.io/normal/front/4/6/46ca0b66-a000-4483-b916-f5b89e710244.jpg?1783915591" alt="Sol Ring" loading="lazy"></div>
-        <div class="card c2"><img src="https://cards.scryfall.io/normal/front/d/5/d5806e68-1054-458e-866d-1f2470f682b2.jpg?1783916239" alt="The One Ring" loading="lazy"></div>
-        <div class="card c3"><img src="https://cards.scryfall.io/normal/front/e/c/ecc1027a-8c07-44a0-bdde-fa2844cff694.jpg?1783906561" alt="Vivi Ornitier" loading="lazy"></div>
-      </div>
+      <p class="lede">Lo sconto si applica in automatico in base alla quantità ordinata. Prezzi a carta, spedizione esclusa.</p>
+    </div>
+    <div class="rates">
+      <div class="rate"><span class="q">1 carta</span><span class="s">Prezzo pieno</span><span class="p">1,00<small>€</small></span></div>
+      <div class="rate"><span class="q">10+ carte</span><span class="s">Risparmi il 30%</span><span class="p">0,70<small>€</small></span></div>
+      <div class="rate"><span class="q">50+ carte</span><span class="s">Risparmi il 50%</span><span class="p">0,50<small>€</small></span></div>
+      <div class="rate best"><span class="q">100+ carte <span class="tag">Più conveniente</span></span><span class="s">Risparmi il 60%: 100 carte = 40 €</span><span class="p">0,40<small>€</small></span></div>
+    </div>
+    <p class="note">Prezzi più spese di spedizione, concordate su WhatsApp insieme al preventivo.</p>
+  </div>
+</section>
+
+<section class="block" id="come" style="padding-top:0">
+  <div class="wrap split">
+    <div>
+      <span class="label">Qualità</span>
+      <h2 class="display" style="margin:12px 0 16px">Fatte per essere <em>giocate</em></h2>
+      <p class="lede">Ogni carta è stampata con cura su materiali scelti per durare e rendere bene sul tavolo. Colori vividi, dettagli nitidi, un feeling naturale al tatto.</p>
+      <dl class="spec">
+        <div><dt>Stampa</dt><dd>Nitida e brillante</dd></div>
+        <div><dt>Misure</dt><dd>Come le originali</dd></div>
+        <div><dt>Al tatto</dt><dd>Piacevoli e resistenti</dd></div>
+        <div><dt>Anteprima</dt><dd>Sempre inclusa</dd></div>
+      </dl>
+    </div>
+    <div>
+      <span class="label">Come funziona</span>
+      <h2 class="display" style="margin:12px 0 24px">Tre passi, poi il mazzo</h2>
+      <ol class="steps">
+        <li><span class="t">Invii la lista su WhatsApp</span><span class="d">Ricevi subito prezzo e tempi di consegna.</span></li>
+        <li><span class="t">Approvi l'anteprima</span><span class="d">Controlli ogni carta prima della stampa.</span></li>
+        <li><span class="t">Ricevi il mazzo a casa</span><span class="d">In 2-4 giorni in Italia, pronto da giocare.</span></li>
+      </ol>
+      <a class="btn btn-accent" style="margin-top:28px" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Scrivici su WhatsApp</a>
     </div>
   </div>
 </section>
 
-<section style="padding-top:0">
+<section class="block" id="recensioni" style="padding-top:0">
   <div class="wrap">
-    <div class="feat">
-      <div class="cell">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/><circle cx="12" cy="12" r="3" fill="#e8712a" stroke="none"/></svg>
-        <h3>Anteprima sempre</h3><p>Vedi ogni carta prima della stampa.</p>
-      </div>
-      <div class="cell">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 1 L23 12 L12 23 L1 12 Z"/><path d="M12 6 L18 12 L12 18 L6 12 Z" fill="#e8712a" stroke="none"/></svg>
-        <h3>Qualità premium</h3><p>Fatte per essere mescolate e giocate.</p>
-      </div>
-      <div class="cell">
-        <svg class="ic" viewBox="0 0 30 20" style="width:32px"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#f1f2f1"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg>
-        <h3>Made in Italy</h3><p>Stampate e spedite dall'Italia.</p>
-      </div>
-      <div class="cell">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M13 2 L4 14 h7 l-1 8 9-12 h-7 z" fill="#e8712a" stroke="none"/></svg>
-        <h3>Spedizione rapida</h3><p>Stampa in 24/48h, non settimane.</p>
-      </div>
-      <div class="cell">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <h3>Contatto diretto</h3><p>Ti risponde una persona vera.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="prezzi">
-  <div class="wrap center">
-    <span class="eyebrow">Listino</span>
-    <h2 style="margin:16px 0 10px">Prezzi</h2>
-    <p class="muted maxc">Più carte ordini, più risparmi. Sconti automatici in base alla quantità.</p>
-    <div class="price-grid">
-      <div class="tier"><div class="q">1 carta</div><div class="p">1,00 €</div><span class="save">Cad.</span></div>
-      <div class="tier"><div class="q">10+ carte</div><div class="p">0,70 €</div><span class="save">Risparmi 30%</span></div>
-      <div class="tier"><div class="q">50+ carte</div><div class="p">0,50 €</div><span class="save">Risparmi 50%</span></div>
-      <div class="tier best"><span class="flag">Più conveniente</span><div class="q">100+ carte</div><div class="p">0,40 €</div><span class="save">–60% · 100 = 40 €</span></div>
-    </div>
-    <p class="note">Prezzi + spese di spedizione, concordate su WhatsApp col preventivo.</p>
-    <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Richiedi un preventivo</a>
-  </div>
-</section>
-
-<section id="qualita">
-  <div class="wrap">
-    <div class="qsplit">
-      <div class="panel">
-        <span class="eyebrow">Premium</span>
-        <h2 style="margin:16px 0 12px">Qualità che si vede e si sente</h2>
-        <p class="muted" style="margin-bottom:10px">Stampiamo ogni carta con cura, su materiali scelti per durare e rendere bene sul tavolo da gioco.</p>
-        <p class="muted">Colori vividi, dettagli nitidi e un feeling naturale al tatto: carte fatte per essere giocate, non solo guardate.</p>
-        <div class="qgrid">
-          <div class="qbox"><div class="k">Stampa</div><div class="v">Nitida e brillante</div></div>
-          <div class="qbox"><div class="k">Misure</div><div class="v">Come le originali</div></div>
-          <div class="qbox"><div class="k">Al tatto</div><div class="v">Piacevoli e resistenti</div></div>
-          <div class="qbox"><div class="k">Anteprima</div><div class="v">Sempre inclusa</div></div>
-        </div>
-      </div>
+    <div class="head">
       <div>
-        <span class="eyebrow">In 3 passi</span>
-        <h2 style="margin:16px 0 12px">Come funziona</h2>
-        <p class="muted">Ci mandi la lista su WhatsApp, ti rispondiamo col preventivo, approvi l'anteprima e ricevi il mazzo a casa.</p>
-        <div class="steps">
-          <div class="step"><div class="n">1</div><div><div class="t">Invii la lista su WhatsApp</div><div class="d">Ricevi subito prezzo e tempi di consegna.</div></div></div>
-          <div class="step"><div class="n">2</div><div><div class="t">Approvi l'anteprima</div><div class="d">Controlli ogni carta prima della stampa.</div></div></div>
-          <div class="step"><div class="n">3</div><div><div class="t">Ricevi il mazzo a casa</div><div class="d">In 2-4 giorni in Italia, pronto da giocare.</div></div></div>
-        </div>
-        <a class="btn btn-accent btn-block" style="margin-top:16px" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Scrivici su WhatsApp</a>
+        <span class="label">Recensioni</span>
+        <h2 class="display" style="margin-top:12px">Cosa dicono i giocatori</h2>
       </div>
     </div>
+    <div class="quotes">
+      <blockquote>
+        <div class="stars" aria-label="5 stelle su 5">★★★★★</div>
+        <p style="margin-top:12px">La miglior qualità proxy che abbia mai ordinato. I colori risaltano, il cartoncino è fantastico e la spedizione è sempre rapida.</p>
+        <footer>Tiziano R.</footer>
+      </blockquote>
+      <blockquote>
+        <div class="stars" aria-label="5 stelle su 5">★★★★★</div>
+        <p style="margin-top:12px">La qualità di stampa è incredibile. Le carte si mescolano come le originali. Il mio riferimento per ogni mazzo che costruisco.</p>
+        <footer>Alessio R.</footer>
+      </blockquote>
+      <blockquote>
+        <div class="stars" aria-label="5 stelle su 5">★★★★★</div>
+        <p style="margin-top:12px">Ho ordinato un mazzo Commander completo: pronto in un giorno e arrivato in tre. Staff gentilissimo e sempre disponibile.</p>
+        <footer>Martina G.</footer>
+      </blockquote>
+    </div>
   </div>
 </section>
 
-<section id="recensioni">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Recensioni</span>
-      <h2 style="margin:16px 0 4px">Cosa dicono i giocatori</h2>
-    </div>
-    <div class="reviews">
-      <div class="review"><div class="stars">★★★★★</div><p>La miglior qualità proxy che abbia mai ordinato. I colori risaltano, il cartoncino è fantastico e la spedizione è sempre rapida.</p><div class="by">Tiziano R.</div></div>
-      <div class="review"><div class="stars">★★★★★</div><p>La qualità di stampa è incredibile. Le carte si mescolano come le originali. Il mio riferimento per ogni mazzo che costruisco.</p><div class="by">Alessio R.</div></div>
-      <div class="review"><div class="stars">★★★★★</div><p>Ho ordinato un mazzo Commander completo: pronto in un giorno e arrivato in tre. Staff gentilissimo e sempre disponibile.</p><div class="by">Martina G.</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">FAQ</span>
-      <h2 style="margin:16px 0 4px">Domande frequenti</h2>
+<section class="block" id="faq" style="padding-top:0">
+  <div class="wrap split" style="gap:56px">
+    <div>
+      <span class="label">FAQ</span>
+      <h2 class="display" style="margin:12px 0 16px">Domande <em>frequenti</em></h2>
+      <p class="lede">Non trovi la risposta? Scrivici su WhatsApp al <a href="https://wa.me/393246304609" style="color:var(--accent)">324 630 4609</a>.</p>
     </div>
     <div class="faq">
-      <details open><summary>Perché scegliere Il Cartomante?</summary><div class="a">Stampa nitida e curata, anteprima di ogni carta prima della produzione e una persona vera che ti segue su WhatsApp dal preventivo alla consegna.</div></details>
-      <details><summary>Come richiedo un preventivo?</summary><div class="a">Scrivici su WhatsApp al 324 630 4609 con la tua lista di carte (es. "4 Sol Ring, 1 The One Ring"). Ti rispondiamo con prezzo e tempi.</div></details>
-      <details><summary>Cosa sono le proxy MTG?</summary><div class="a">Riproduzioni di carte usate per testare mazzi o giocare partite casalinghe senza acquistare le originali, spesso molto costose.</div></details>
-      <details><summary>Le proxy sono legali?</summary><div class="a">Pensate per uso personale e partite casalinghe. Non sono legali nei tornei sanzionati e non vanno vendute come carte originali.</div></details>
-      <details><summary>Quanto tempo per ricevere l'ordine?</summary><div class="a">La maggior parte degli ordini è stampata entro 24/48 ore e consegnata in 2-4 giorni lavorativi in Italia.</div></details>
-      <details><summary>Posso caricare grafiche personalizzate?</summary><div class="a">Sì! Carichi le tue immagini e crei carte completamente personalizzate: alterazioni artistiche, token custom, regali per il playgroup.</div></details>
-    </div>
-
-    <div class="custom center">
-      <span class="eyebrow">Non solo proxy</span>
-      <h2 style="margin:16px 0 8px">Carte personalizzate</h2>
-      <p class="muted maxc">Creiamo carte uniche con le tue grafiche.</p>
-      <div class="cc-grid" style="text-align:left">
-        <div class="cc"><div class="k">Le tue grafiche</div><div class="d">Carte con le tue immagini.</div></div>
-        <div class="cc"><div class="k">Token custom</div><div class="d">Pedine uniche.</div></div>
-        <div class="cc"><div class="k">Alterazioni</div><div class="d">Rivisitazioni artistiche.</div></div>
-        <div class="cc"><div class="k">Regali</div><div class="d">Sorprese per il playgroup.</div></div>
-      </div>
-      <a class="btn btn-ghost" style="margin-top:20px" href="https://wa.me/393246304609?text=Ciao!%20Ho%20un'idea%20per%20delle%20carte%20personalizzate.">Invia la tua idea →</a>
-    </div>
-
-    <div class="band">
-      <h2>Il futuro delle tue carte inizia qui</h2>
-      <p>Mandaci la tua lista su WhatsApp: il preventivo è gratuito e senza impegno.</p>
-      <a class="btn btn-accent" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Richiedi un preventivo</a>
+      <details open><summary>Perché scegliere Il Cartomante?</summary><p>Stampa nitida e curata, anteprima di ogni carta prima della produzione e una persona vera che ti segue su WhatsApp dal preventivo alla consegna.</p></details>
+      <details><summary>Come richiedo un preventivo?</summary><p>Scrivici su WhatsApp al 324 630 4609 con la tua lista di carte, per esempio "4 Sol Ring, 1 The One Ring". Ti rispondiamo con prezzo e tempi.</p></details>
+      <details><summary>Cosa sono le proxy MTG?</summary><p>Riproduzioni di carte usate per testare mazzi o giocare partite casalinghe senza acquistare le originali, spesso molto costose.</p></details>
+      <details><summary>Le proxy sono legali?</summary><p>Sono pensate per uso personale e partite casalinghe. Non sono ammesse nei tornei sanzionati e non vanno vendute come carte originali.</p></details>
+      <details><summary>Quanto tempo per ricevere l'ordine?</summary><p>La maggior parte degli ordini è stampata entro 24/48 ore e consegnata in 2-4 giorni lavorativi in Italia.</p></details>
+      <details><summary>Posso caricare grafiche personalizzate?</summary><p>Sì. Carichi le tue immagini e crei carte completamente personalizzate: alterazioni artistiche, token custom, regali per il playgroup.</p></details>
     </div>
   </div>
 </section>
+
+<div class="wrap">
+  <div class="custom">
+    <div>
+      <span class="label">Non solo proxy</span>
+      <h2 class="display" style="margin:12px 0 12px">Carte <em>personalizzate</em></h2>
+      <p class="lede">Creiamo carte uniche con le tue grafiche, per te o per il tuo playgroup.</p>
+      <a class="btn btn-line" style="margin-top:24px" href="https://wa.me/393246304609?text=Ciao!%20Ho%20un'idea%20per%20delle%20carte%20personalizzate.">Invia la tua idea</a>
+    </div>
+    <div class="options">
+      <div><b>Le tue grafiche</b><span>Carte con le tue immagini.</span></div>
+      <div><b>Token custom</b><span>Pedine uniche.</span></div>
+      <div><b>Alterazioni</b><span>Rivisitazioni artistiche.</span></div>
+      <div><b>Regali</b><span>Sorprese per il playgroup.</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="block" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="closing">
+      <div>
+        <h2 class="display">Il futuro delle tue carte inizia qui</h2>
+        <p style="margin-top:14px">Mandaci la tua lista su WhatsApp. Il preventivo è gratuito e senza impegno.</p>
+      </div>
+      <a class="btn" href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Richiedi un preventivo</a>
+    </div>
+  </div>
+</section>
+
+</main>
 
 <footer>
   <div class="wrap">
     <div class="fgrid">
-      <div class="fbrand">
-        <a class="brand" href="#top">
-          <svg width="28" height="28" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 2 L30 17 L17 32 L4 17 Z" fill="none" stroke="#e6b34c" stroke-width="1.3"/><circle cx="17" cy="17" r="4" fill="#e8712a"/></svg>
-          <span class="col"><b>IL <span class="gold">CARTOMANTE</span></b><small>Il futuro delle tue carte</small></span>
-        </a>
-        <p>Proxy MTG premium e stampa di carte personalizzate — create da giocatori, per giocatori che ci tengono.</p>
+      <div>
+        <span class="brand" style="color:var(--ink)"><b>IL CARTOMANTE</b><small>Il futuro delle tue carte</small></span>
+        <p>Proxy MTG premium e stampa di carte personalizzate, create da giocatori per giocatori.</p>
       </div>
-      <div class="fcol"><h4>Link rapidi</h4><a href="#top">Proxy MTG</a><a href="#recensioni">Recensioni</a><a href="#prezzi">Prezzi</a><a href="#faq">FAQ</a></div>
-      <div class="fcol"><h4>Come ordinare</h4><a href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Richiedi un preventivo</a><a href="#qualita">Come funziona</a><a href="#prezzi">Listino prezzi</a></div>
-      <div class="fcol"><h4>Assistenza</h4><a href="https://wa.me/393246304609">WhatsApp: 324 630 4609</a><a href="#faq">Domande frequenti</a><span>Termini e condizioni</span></div>
+      <div><h4>Sito</h4><a href="#top">Proxy MTG</a><a href="#recensioni">Recensioni</a><a href="#prezzi">Prezzi</a><a href="#faq">FAQ</a></div>
+      <div><h4>Ordinare</h4><a href="https://wa.me/393246304609?text=Ciao!%20Vorrei%20un%20preventivo%20per%20la%20mia%20lista%20di%20carte.">Richiedi un preventivo</a><a href="#come">Come funziona</a><a href="#prezzi">Listino</a></div>
+      <div><h4>Assistenza</h4><a href="https://wa.me/393246304609">WhatsApp 324 630 4609</a><a href="#faq">Domande frequenti</a><span>Termini e condizioni</span></div>
     </div>
-    <div class="copy">© 2026 Il Cartomante — Tutti i diritti riservati.<br>Le proxy sono destinate esclusivamente all'uso personale.</div>
+    <div class="legal">© 2026 Il Cartomante. Tutti i diritti riservati. Le proxy sono destinate esclusivamente all'uso personale.</div>
   </div>
 </footer>
 
